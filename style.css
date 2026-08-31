@@ -1,13 +1,7 @@
-/* ==========================================================================
-   Simple Personal Portfolio - John Smith (Real Estate Consultant)
-   Style Sheet (style.css) - Performance & 60 FPS Optimized
-   ========================================================================== */
-
-/* --- CSS Variables & Design System --- */
+/* CSS Variables */
 :root {
     --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    
-    /* Color Palette */
+
     --color-bg: #f8fafc;
     --color-surface: #ffffff;
     --color-text-main: #0f172a;
@@ -20,22 +14,22 @@
     --color-border: #e2e8f0;
     --color-border-hover: #cbd5e1;
 
-    /* Layout & Spacing */
     --container-max: 1140px;
     --header-height: 72px;
     --radius-sm: 6px;
     --radius-md: 10px;
     --radius-lg: 16px;
 
-    /* Shadows & Explicit GPU Composite Transitions */
     --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05);
     --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08);
     --transition-fast: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     --transition-smooth: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-/* --- Resets & Base Styles --- */
-*, *::before, *::after {
+/* Base Styles */
+*,
+*::before,
+*::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -73,7 +67,7 @@ ul {
     list-style: none;
 }
 
-/* --- Layout Utility --- */
+/* Layout Utilities */
 .container {
     width: 100%;
     max-width: var(--container-max);
@@ -116,7 +110,7 @@ ul {
     margin-right: auto;
 }
 
-/* --- Scroll Reveal Animations (GPU Accelerated) --- */
+/* Scroll Reveal */
 .reveal {
     opacity: 0;
     transform: translateY(24px) translateZ(0);
@@ -129,7 +123,7 @@ ul {
     transform: translateY(0) translateZ(0);
 }
 
-/* --- Header & Navigation --- */
+/* Header & Nav */
 .header {
     position: fixed;
     top: 0;
@@ -207,7 +201,6 @@ ul {
     transform: translateY(-1px) translateZ(0);
 }
 
-/* Mobile Navigation Toggle Button */
 .mobile-toggle {
     display: none;
     background: none;
@@ -227,7 +220,7 @@ ul {
     will-change: transform, opacity;
 }
 
-/* --- Hero Section --- */
+/* Hero Section */
 .hero-section {
     padding-top: calc(var(--header-height) + 4rem);
     padding-bottom: 5rem;
@@ -340,7 +333,7 @@ ul {
     border: 1px solid var(--color-border);
 }
 
-/* --- About Section --- */
+/* About Section */
 .about-grid {
     display: grid;
     grid-template-columns: 0.9fr 1.1fr;
@@ -399,7 +392,7 @@ ul {
     line-height: 1.5;
 }
 
-/* --- Experience Section --- */
+/* Experience Section */
 .experience-section {
     background-color: var(--color-surface);
     border-top: 1px solid var(--color-border);
@@ -477,7 +470,7 @@ ul {
     line-height: 1.6;
 }
 
-/* --- Services Section --- */
+/* Services Section */
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -520,7 +513,7 @@ ul {
     line-height: 1.6;
 }
 
-/* --- Achievements Section --- */
+/* Achievements Section */
 .achievements-section {
     background-color: var(--color-primary);
     color: #ffffff;
@@ -561,7 +554,7 @@ ul {
     font-weight: 500;
 }
 
-/* --- Testimonials Section --- */
+/* Testimonials Section */
 .testimonials-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -630,7 +623,7 @@ ul {
     color: var(--color-text-light);
 }
 
-/* --- Contact Section --- */
+/* Contact Section */
 .contact-section {
     background-color: var(--color-surface);
     border-top: 1px solid var(--color-border);
@@ -717,7 +710,6 @@ ul {
     transform: translateY(-2px) translateZ(0);
 }
 
-/* Contact Form */
 .contact-form {
     background-color: var(--color-bg);
     padding: 2rem;
@@ -757,7 +749,7 @@ ul {
     box-shadow: 0 0 0 3px rgba(180, 83, 9, 0.1);
 }
 
-/* --- Footer --- */
+/* Footer */
 .footer {
     padding: 2rem 0;
     background-color: var(--color-primary);
@@ -770,7 +762,7 @@ ul {
     text-align: center;
 }
 
-/* --- Responsive Media Queries --- */
+/* Responsive Media Queries */
 @media (max-width: 1024px) {
     .hero-container {
         grid-template-columns: 1fr;
@@ -824,7 +816,6 @@ ul {
         display: flex;
     }
 
-    /* Hardware Accelerated Smooth Mobile Menu Drawer */
     .nav-menu {
         position: fixed;
         top: var(--header-height);
@@ -865,18 +856,18 @@ ul {
         margin-top: 0.5rem;
     }
 
-    /* Mobile Hamburger Animation */
     .mobile-toggle.active .hamburger-bar:nth-child(1) {
         transform: translateY(7px) rotate(45deg);
     }
+
     .mobile-toggle.active .hamburger-bar:nth-child(2) {
         opacity: 0;
     }
+
     .mobile-toggle.active .hamburger-bar:nth-child(3) {
         transform: translateY(-7px) rotate(-45deg);
     }
 
-    /* Timeline Mobile */
     .timeline::before {
         left: 0;
     }
@@ -913,13 +904,15 @@ ul {
     }
 }
 
-/* --- Reduced Motion Support --- */
+/* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto !important;
     }
 
-    *, *::before, *::after {
+    *,
+    *::before,
+    *::after {
         animation-duration: 0.001ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.001ms !important;
@@ -930,4 +923,34 @@ ul {
         transform: none !important;
         transition: none !important;
     }
+}
+
+/* Company Links */
+.about-company-link {
+    color: var(--color-accent);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s ease;
+}
+
+.about-company-link:hover {
+    color: var(--color-text-main);
+}
+
+.footer-company-link {
+    color: #94a3b8;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.footer-company-link:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.footer-divider {
+    margin: 0 0.5rem;
+    opacity: 0.4;
 }
