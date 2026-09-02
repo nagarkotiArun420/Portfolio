@@ -101,4 +101,55 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         revealElements.forEach(el => el.classList.add('revealed'));
     }
+
+    // Contact Form AJAX Submission (Direct single-click sending without mail client redirect)
+    const contactForm = document.getElementById('contactForm');
+    const formStatus = document.getElementById('formStatus');
+    const submitBtn = document.getElementById('submitBtn');
+
+    if (contactForm && formStatus && submitBtn) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const originalBtnText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending Message...';
+            submitBtn.disabled = true;
+            formStatus.className = 'form-status';
+            formStatus.style.display = 'none';
+
+            const formData = new FormData(contactForm);
+            const data = Object.fromEntries(formData.entries());
+            data._subject = `New Portfolio Inquiry from ${data.name || 'Visitor'}: ${data.subject || 'Property Inquiry'}`;
+
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json().catch(() => ({}));
+
+                if (response.ok && (result.success === 'true' || result.success === true)) {
+                    formStatus.innerHTML = '<strong>✓ Thank you!</strong> Your message has been sent successfully. Sujata will get back to you shortly.';
+                    formStatus.className = 'form-status success';
+                    contactForm.reset();
+                } else if (result.message) {
+                    formStatus.innerHTML = `<strong>ℹ Status:</strong> ${result.message}`;
+                    formStatus.className = 'form-status success';
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (err) {
+                formStatus.innerHTML = '<strong>✕ Message could not be sent.</strong> Please try again or email directly at <a href="mailto:nagarkotiarun420@gmail.com">nagarkotiarun420@gmail.com</a>';
+                formStatus.className = 'form-status error';
+            } finally {
+                submitBtn.textContent = originalBtnText;
+                submitBtn.disabled = false;
+            }
+        });
+    }
 });
